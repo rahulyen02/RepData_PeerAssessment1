@@ -95,16 +95,14 @@ for (i in 1:nrow(new_activity)) {
 
 ```r
 new_by_date <- new_activity %>% group_by(date) %>% summarise(steps = sum(steps))
+options(scipen=4)
+new_mean = round(mean(new_by_date$steps),2)
+new_median = round(median(new_by_date$steps),2)
+
 hist(new_by_date$steps, xlab = "Steps", main = "Histogram - Steps Taken each day")
 ```
 
 ![](PA1_template_files/figure-html/New analysis-1.png)<!-- -->
-
-```r
-options(scipen=4)
-new_mean = round(mean(new_by_date$steps),2)
-new_median = round(median(new_by_date$steps),2)
-```
 The mean is 10766.19 and the median is 10766.19
 
 The mean has not changed by the median has changed and now equals the mean as we have imputed the values based on the average of all the intervals. Imputing the values has increased the concentration of steps near the mean of the data.
