@@ -103,9 +103,10 @@ hist(new_by_date$steps, xlab = "Steps", main = "Histogram - Steps Taken each day
 ```
 
 ![](PA1_template_files/figure-html/New analysis-1.png)<!-- -->
+
 The mean is 10766.19 and the median is 10766.19
 
-The mean has not changed by the median has changed and now equals the mean as we have imputed the values based on the average of all the intervals. Imputing the values has increased the concentration of steps near the mean of the data.
+The mean has not changed but the median has changed and now equals the mean as we have imputed the values based on the average of all the intervals. Imputing the values has increased the concentration of steps near the mean of the data.
 
 ## Are there differences in activity patterns between weekdays and weekends?
 ### 1. Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day
@@ -117,7 +118,7 @@ new_activity <- mutate(new_activity, Week = ifelse(wday(date) == 1 | wday(date) 
 
 ```r
 new_by_interval <- new_activity %>% group_by(interval, Week) %>% summarise(steps_sum = sum(steps), steps_mean = mean(steps))
-xyplot(steps_sum ~ interval | Week, data = new_by_interval, type = "l", layout = c(1,2))
+xyplot(steps_mean ~ interval | Week, data = new_by_interval, type = "l", layout = c(1,2))
 ```
 
 ![](PA1_template_files/figure-html/Plotting-1.png)<!-- -->
